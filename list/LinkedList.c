@@ -253,4 +253,32 @@ void Merge(LNode *A,LNode *B,LNode **C) //将增序链表A，B合并成降序链
     
 }
 
-
+void Josephus(int n,int m,int k) //约翰夫问题：设有N个人围成一圈并顺序编号为1～N。由编号为K的人进行1到M的报数，数到M的的人出圈。循环直到所有人出去
+{
+    LNode *p,*q;
+    int i;
+    p=(LNode*)malloc(sizeof(LNode));
+    q=p;
+    for(i=1;i<n;i++)  //从编号K开始建立一个单链表
+    {
+        q->data=k;
+        K=k%n+1;
+        q->next=(LNode*)malloc(sizeof(LNode));
+        q=q->next;
+    }
+    q->data=k;
+    q->next=p;
+    while(p->next!=p)
+    {
+        for(i=1;i<m;i++)
+        {
+            q=p;
+            p=p->next;
+        }
+        q->next=p->next;
+        printf("%4d",p->data);
+        free(p);
+        p=q->next;
+    }
+    printf("%4d",p->data);
+}
